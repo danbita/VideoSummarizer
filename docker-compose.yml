@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  fv-video-summarizer:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      # Mount local directories for persistent storage
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+      - ./temp:/app/temp
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    # Resource limits to prevent overwhelming the system
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'

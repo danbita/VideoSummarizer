@@ -1,0 +1,34 @@
+{
+  "name": "fv-video-summarizer",
+  "version": "1.0.0",
+  "description": "AI-powered video summarization tool for issue reports",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "node tests/ffmpeg-test.js",
+    "test:phase2": "node tests/phase2-test.js",
+    "docker:build": "docker build -t fv-video-summarizer .",
+    "docker:run": "docker run -p 3000:3000 -v $(pwd)/uploads:/app/uploads -v $(pwd)/output:/app/output fv-video-summarizer"
+  },
+  "keywords": ["video", "ai", "summarization", "ffmpeg", "nodejs", "openai", "gemini"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.1",
+    "openai": "^4.57.0",
+    "@google/generative-ai": "^0.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
